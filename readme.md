@@ -48,7 +48,8 @@ The system tracks user-wallet associations and ensures data integrity with prope
 ---
 
 ## UML Class Diagramm
-<iframe width="768" height="432" src="https://miro.com/app/embed/uXjVLsf9vbk=/?pres=1&frameId=3458764613701002735&embedId=771077793244" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+![Simple Wallet System UML Diagram](images/Simple_Wallet_System.jpg)
+
 
 ## How to Use
 1. Create a `User` object by providing unique `Id`, `firstName`, `lastName`, and `email`.

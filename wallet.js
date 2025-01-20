@@ -1,7 +1,7 @@
 // A Simple Wallet System
 
 class User {
-    static maxWallets = 2;
+    static maxWallets = 2; // Max wallets a user can own
 
     constructor(Id, firstName, lastName, email) {
         this.Id = Id;
@@ -24,7 +24,7 @@ class User {
 }
 
 class Wallet {
-    static maxBalance = 10000000;
+    static maxBalance = 10000000; // Max wallet balance limit
 
     constructor(Id, initialBalance = 0) {
         this.Id = Id;
@@ -40,7 +40,7 @@ class Wallet {
         this.users.add(user.Id);
     }
 
-    credit(amount) {
+    fundWallet(amount) {
         if (amount <= 0) {
             throw new Error("Credit amount must be positive.");
         }
@@ -51,7 +51,7 @@ class Wallet {
         console.log(`Credited ${amount} to Wallet ${this.Id}. New Balance: ${this.balance}`);
     }
 
-    debit(amount) {
+    makePayment(amount,item) {
         if (amount <= 0) {
             throw new Error("Debit amount must be positive.");
         }
@@ -59,7 +59,15 @@ class Wallet {
             throw new Error("Insufficient funds.");
         }
         this.balance -= amount;
-        console.log(`Debited ${amount} from Wallet ${this.Id}. New Balance: ${this.balance}`);
+        console.log(`Debited ${amount} from Wallet ${this.Id} for the payment of ${item}. New Balance: ${this.balance}`);
+    }
+
+    transfer(amount, targetWallet) {
+        if (!(targetWallet instanceof Wallet)) {
+            throw new Error("Invalid target wallet.");        }
+        this.makePayment(amount); // Deduct amount from current wallet
+        targetWallet.fundWallet(amount); // Add amount to the target wallet
+        console.log(`Transferred ${amount} from Wallet ${this.Id} to Wallet ${targetWallet.Id}`);
     }
 
     retrieveWallet() {
@@ -68,13 +76,30 @@ class Wallet {
 }
 
 // Example Usage
+
+// Create a user
 const Daniel = new User("U001", "Daniel", "Nwolu", "nwoludaniel@gmail.com");
 Daniel.retrieveUser();
 
+// Create a wallet and link it to the user
 const DansWallet = new Wallet("W001");
 DansWallet.linkUserToWallet(Daniel);
 DansWallet.retrieveWallet();
 
-DansWallet.credit(2000);
-DansWallet.debit(500);
+// Fund wallet
+DansWallet.fundWallet(2000);
+
+// Make payment
+DansWallet.makePayment(500,"books");
+
+// Retrieve wallet details
 DansWallet.retrieveWallet();
+
+// Create another wallet and transfer funds
+const OtherWallet = new Wallet("W002");
+OtherWallet.linkUserToWallet(Daniel);
+DansWallet.transfer(1000, OtherWallet);
+
+// Check balances after transfer
+DansWallet.retrieveWallet();
+OtherWallet.retrieveWallet();

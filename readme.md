@@ -34,8 +34,9 @@ The system tracks user-wallet associations and ensures data integrity with prope
 
 #### Methods:
 - `linkUserToWallet(user: User)`: Links a user to the wallet while validating constraints.
-- `credit(amount: Number)`: Adds the specified amount to the wallet balance, ensuring it does not exceed the maximum balance.
-- `debit(amount: Number)`: Deducts the specified amount from the wallet balance, ensuring it does not go negative.
+- `fundWallet(amount: Number)`: Adds the specified amount to the wallet balance, ensuring it does not exceed the maximum balance.
+- `makePayment(amount: Number, item:string)`: Deducts the specified amount from the wallet balance, ensuring it does not go negative.
+- `tranfer(amount:Number, targetWallet:Wallet)`:Make a tranfer of fund to anoter wallet.
 - `retrieveWallet()`: Retrieves and displays wallet details.
 
 ---
@@ -47,13 +48,13 @@ The system tracks user-wallet associations and ensures data integrity with prope
 
 ---
 
-## UML Class Diagramm Link
+## UML Class Diagram Link
 
 <iframe width="768" height="432" src="https://miro.com/app/embed/uXjVLsf9vbk=/?pres=1&frameId=3458764613701977591&embedId=424669791825" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
 
 ---
 
-## UML Class Diagramm 
+## UML Class Diagram
 ![simple wallet system](/images/wallet_system.jpg)
 
 ---

@@ -61,6 +61,6 @@ The system tracks user-wallet associations and ensures data integrity with prope
 1. Create a `User` object by providing unique `Id`, `firstName`, `lastName`, and `email`.
 2. Create a `Wallet` object by providing unique `Id` and an initial balance.
 3. Use `linkUserToWallet()` to associate a wallet with a user.
-4. Manage wallet balances using `credit()` and `debit()` methods.
+4. Manage wallet balances using `fundWallet()` and `makePayment()` methods.
 5. Use `retrieveUser()` and `retrieveWallet()` to view user and wallet details respectively.
 
